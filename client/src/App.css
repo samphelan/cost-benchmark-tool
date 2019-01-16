@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+input[type="checkbox"] {
+  /* Double-sized Checkboxes */
+  transform: scale(0.9);
+  -ms-transform: scale(0.9); /* IE */
+  -moz-transform: scale(0.9); /* FF */
+  -webkit-transform: scale(0.9); /* Safari and Chrome */
+  -o-transform: scale(0.9); /* Opera */
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.link-button:hover {
+  text-decoration: none;
+}
+
+.link-button:focus {
+  outline: none !important;
+}
+
+.job-list {
+  font-size: 0.8em;
+  padding: 3px 0;
+}
+
+.job-list-selected {
+  font-size: 0.8em;
+  padding: 3px 0;
+  background-color: #dddddd;
+  font-weight: bold;
+}
+
+.job-list:hover {
+  cursor: pointer;
+}
+
+.custom-input {
+  min-width: 180px;
+  font-size: 0.9em;
+  color: #888888;
+  border-style: none none solid none;
+  border-color: #888888;
+}
+
+.custom-input:focus-within {
+  min-width: 180px;
+  font-size: 0.9em;
+  color: #888888;
+
+  border-color: rgb(173, 173, 255);
+  outline: none;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

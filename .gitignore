@@ -1,0 +1,6 @@
+node_modules 
+build
+.env
+dbConfig.js
+service_account.json
+attribute_tables
