@@ -23,10 +23,10 @@ const App = () => {
         client_id={config.client_id}
         redirect_uri={config.redirect_uri}
       >
-        <SecureRoute exact path="/" render={() => <JobInputForm />} />
+        <Route exact path="/" render={() => <JobInputForm />} />
         <Route path="/implicit/callback" component={ImplicitCallback} />
-        <SecureRoute path="/report-error" component={ReportError} />
-        <SecureRoute path="/user" render={() => <UserPage />} />
+        <Route exact path="/report-error" component={ReportError} />
+        <Route exact path="/user" render={() => <UserPage />} />
       </Security>
     </BrowserRouter>
   );
