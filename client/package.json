@@ -1,34 +1,26 @@
 {
-  "name": "client",
+  "name": "samples-js-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@okta/okta-react": "1.0.2",
+    "@okta/okta-react": "^1.0.3",
     "bootstrap": "^4.1.3",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.3",
-    "react-spinners": "^0.4.7",
-    "react-transition-group": "^2.5.0",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "colors": "^1.1.2",
+    "cross-env": "^5.1.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.77.1",
+    "react-spinners": "^0.4.7"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=8080 react-scripts start",
     "build": "react-scripts build && cp -r ./build ../build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo 'Tests not yet implemented' && exit 1",
+    "eject": "react-scripts eject",
+    "postinstall": "node post-install.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000/"
 }

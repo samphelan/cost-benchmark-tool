@@ -1,58 +1,35 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import LoginForm from "./LoginForm";
+import { withAuth } from "@okta/okta-react";
 
-class LogIn extends Component {
-  state = {};
-  render() {
-    return (
-      <div
-        className="container border rounded shadow p-4"
-        style={{ width: "50%", overflow: "auto" }}
-      >
-        <form ref={this.props.reference} onSubmit={this.props.onLogin}>
-          <div className="row mb-3">
-            <div className="col text-center">
-              Username:
-              <br />
-              <input
-                ref={this.props.userNameRef}
-                type="text"
-                className="form-control"
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col text-center">
-              Password:
-              <br />
-              <input
-                ref={this.props.passwordRef}
-                type="password"
-                className="form-control"
-              />
-            </div>
-          </div>
+export default withAuth(
+  class Login extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { authenticated: null };
+      this.checkAuthentication = this.checkAuthentication.bind(this);
+      this.checkAuthentication();
+    }
 
-          <div className="row mb-3">
-            <div className="col text-center">
-              <button type="submit" className="btn btn-primary">
-                Log In
-              </button>
-            </div>
-          </div>
-        </form>
-        <div
-          className="row mb-3"
-          style={{ display: this.props.wrongCredentials ? "block" : "none" }}
-        >
-          <div className="col text-center">
-            <p className="text-danger">
-              Username / Password Combination Not Found.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    async checkAuthentication() {
+      const authenticated = await this.props.auth.isAuthenticated();
+      if (authenticated !== this.state.authenticated) {
+        this.setState({ authenticated });
+      }
+    }
+
+    componentDidUpdate() {
+      this.checkAuthentication();
+    }
+
+    render() {
+      if (this.state.authenticated === null) return null;
+      return this.state.authenticated ? (
+        <Redirect to={{ pathname: "/" }} />
+      ) : (
+        <LoginForm baseUrl={this.props.baseUrl} />
+      );
+    }
   }
-}
-
-export default LogIn;
+);

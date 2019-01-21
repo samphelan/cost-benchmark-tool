@@ -10,15 +10,6 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import React from "react";
-import ReactDOM from "react-dom";
-//import "semantic-ui-css/semantic.min.css";
-import App from "./App";
-import "./index.css";
-import "bootstrap/dist/css/bootstrap.css";
-import registerServiceWorker from "./registerServiceWorker";
+const createConfigFile = require('../tools/create-config-file');
 
-/* global document */
-/* eslint-disable react/jsx-filename-extension */
-ReactDOM.render(<App />, document.getElementById("root"));
-registerServiceWorker();
+createConfigFile();

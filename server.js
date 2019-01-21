@@ -34,7 +34,7 @@ const app = express();
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
 
   // Request methods you wish to allow
   res.setHeader(
@@ -66,24 +66,29 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/attributes/:attribute", (req, res) => {
-  const column = "value";
-  const table = req.params.attribute + "_values";
-  const queryString =
-    `SELECT ${column} FROM ` +
-    process.env.MYSQL_DB +
-    `.${table} GROUP BY ${column}`;
-  connection.query(queryString, (err, rows, fields) => {
-    if (err) {
-      res.sendStatus(500);
-      console.log(err);
-    }
+  try {
+    const column = "value";
+    const table = req.params.attribute + "_values";
+    const queryString =
+      `SELECT ${column} FROM ` +
+      process.env.MYSQL_DB +
+      `.${table} GROUP BY ${column}`;
+    connection.query(queryString, (err, rows, fields) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      }
 
-    res.json(rows);
-  });
+      res.json(rows);
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/api/attributes", (req, res) => {
   const queryString = `SELECT Tables_in_cost_benchmark AS tables FROM (SHOW TABLES)`;
+  console.log("hello");
   connection.query(queryString, (err, rows, fields) => {
     if (err) {
       res.sendStatus(500);

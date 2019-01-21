@@ -10,15 +10,21 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import React from "react";
-import ReactDOM from "react-dom";
-//import "semantic-ui-css/semantic.min.css";
-import App from "./App";
-import "./index.css";
-import "bootstrap/dist/css/bootstrap.css";
-import registerServiceWorker from "./registerServiceWorker";
+/**
+ * Helper function that watches the authenticate state, then applies it
+ * as a boolean (authenticated) as well as attaches the userinfo data.
+ */
+async function checkAuthentication() {
+  const authenticated = await this.props.auth.isAuthenticated();
+  if (authenticated !== this.state.authenticated) {
+    if (authenticated && !this.state.userinfo) {
+      const userinfo = await this.props.auth.getUser();
+      this.setState({ authenticated, userinfo });
+    } else {
+      this.setState({ authenticated });
+    }
+  }
+}
 
-/* global document */
-/* eslint-disable react/jsx-filename-extension */
-ReactDOM.render(<App />, document.getElementById("root"));
-registerServiceWorker();
+/* eslint-disable import/prefer-default-export */
+export { checkAuthentication };

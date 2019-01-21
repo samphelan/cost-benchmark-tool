@@ -39,8 +39,6 @@ export default withAuth(
         authenticated: null,
         user: ""
       };
-
-      this.checkAuthentication();
     }
 
     checkAuthentication = async () => {
@@ -359,11 +357,13 @@ export default withAuth(
 
     render() {
       const columnClasses = "col rounded border shadow m-2 p-4 pb-5";
+      console.log(this.state.authenticated);
       if (
         this.state.authenticated === null ||
         this.state.authenticated === false
-      )
+      ) {
         return <PageLoad />;
+      }
 
       if (this.state.submitted) {
         return (
